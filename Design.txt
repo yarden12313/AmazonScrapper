@@ -1,0 +1,5 @@
+# Product name: Amazon scrapper
+
+# Product description: The program search item in Amazon site
+# and export to csv file list of item title and item price
+

@@ -1,14 +1,16 @@
 from selenium import webdriver
 from FileHelper import *
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
 class DriverHelper:
     def __init__(self):
         browser_dict = {"1": self.chrome,
-                        "2": self.explorer,
-                        "3": self.firefox}
-        index = input("Hello!\nPlease enter the browser index from the following list:\n1. Chrome\n2. IE "
-                      "Explorer\n3. FireFox\n\nAnswer: ")
+                        "2": self.edge,
+                        "3": self.firefox,
+                        "4": self.explorer}
+        index = input("Hello!\nPlease enter the browser index from the following list:\n1. Chrome\n2. Edge\n3. "
+                      "FireFox\n4. IE Explorer\n\nAnswer: ")
         self.driver = browser_dict[index]()
 
     @staticmethod
@@ -16,8 +18,21 @@ class DriverHelper:
         return webdriver.Chrome('chromedriver.exe')
 
     @staticmethod
+    def edge():
+        return webdriver.Edge('msedgedriver.exe')
+
+    @staticmethod
     def explorer():
-        return webdriver.Ie('IEDriverServer.exe')
+        # create capabilities
+        capabilities = DesiredCapabilities.INTERNETEXPLORER
+
+        # delete platform and version keys
+        capabilities['ignoreProtectedModeSettings'] = True
+
+        capabilities['ignoreZoomSetting'] = True
+
+        capabilities.setdefault("nativeEvents", False)
+        return webdriver.Ie('IEDriverServer.exe', capabilities=capabilities)
 
     @staticmethod
     def firefox():

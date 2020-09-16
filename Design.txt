@@ -3,3 +3,8 @@
 # Product description: The program search item in Amazon site
 # and export to csv file list of item title and item price
 
+# To run program do the following steps:
+#
+# 1. Open CMD
+# 2. Navigate to project location
+# 3. run: C:\Users\papa\PycharmProjects\exercise\venv\Scripts\python.exe AmazonScrapper.py

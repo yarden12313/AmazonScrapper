@@ -1,4 +1,5 @@
 import csv
+import os
 
 
 class FileHelper:
@@ -9,3 +10,12 @@ class FileHelper:
             writer.writerow(["Title", "Price"])
             for row in data:
                 writer.writerow([row["title"], row["price"]])
+
+    @staticmethod
+    def get_project_path():
+        project = "exercise"
+        path = os.path.dirname(__file__)
+        while len(path) > 0:
+            if os.path.split(path)[1] == project:
+                return path
+            path = os.path.split(path)[0]
